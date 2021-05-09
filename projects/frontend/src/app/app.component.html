@@ -30,8 +30,12 @@
     </div>
     <div class="main">
 
+
+      <ng-container *ngIf="music.selectedView | async as selectedView">
+      
+
       <!-- Search Results -->
-      <div class="search-results">
+      <div *ngIf="selectedView === 'search-results'" class="search-results">
         <div *ngFor="let song of (music.searchResults | async)?.data">
           <music-track [track]="song"></music-track>
         </div>
@@ -39,7 +43,7 @@
 
 
       <!-- Library albums -->
-      <div class="search-results">
+      <div *ngIf="selectedView === 'library-albums'" class="search-results">
         <div *ngFor="let song of (music.libraryAlbums | async)">
           <music-track [track]="song" [type]="'library-albums'"></music-track>
         </div>
@@ -47,7 +51,7 @@
 
 
       <!-- Playlist Detail-->
-      <div>
+      <div *ngIf="selectedView === 'playlist'">
         <div
           *ngIf="music.selectedPlaylist | async as selectedPlaylist; else loading"
         >
@@ -69,7 +73,7 @@
 
 
       <!-- Library Album-->
-      <div>
+      <div *ngIf="selectedView === 'library-album'">
         <div
           *ngIf="music.selectedLibraryAlbum | async as selectedLibraryAlbum; else loading"
         >
@@ -88,6 +92,7 @@
         </div>
         <ng-template #loading>No playlist selected</ng-template>
       </div>
+    </ng-container>
 
 
 

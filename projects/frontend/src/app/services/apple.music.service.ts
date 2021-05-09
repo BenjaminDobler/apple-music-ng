@@ -9,6 +9,8 @@ export class AppleMusic {
 
   selectedLibraryAlbum: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
+  selectedView: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
 
 
   public musicKit: MusicKit.MusicKitInstance;
@@ -72,12 +74,15 @@ export class AppleMusic {
     console.log('id ', id);
     const album = await this.musicKit.api.library.album(id);
     this.selectedLibraryAlbum.next(album);
+    this.selectedView.next('library-album');
   }
 
   async loadLibraryAlbums() {
     const albums: any = await this.musicKit.api.library.albums([]);
     console.log('albums ', albums);
     this.libraryAlbums.next(albums);
+    this.selectedView.next('library-albums');
+
   }
 
   async loadPlaylists() {
@@ -85,12 +90,16 @@ export class AppleMusic {
     this.playlists.next(playlists);
 
     console.log(playlists);
+    this.selectedView.next('playlists');
+
   }
 
   async loadPlaylist(p: any) {
       const playlist = await this.musicKit.api.library.playlist(p.id);
       console.log(playlist);
       this.selectedPlaylist.next(playlist);
+      this.selectedView.next('playlist');
+
   }
 
   searchResults: BehaviorSubject<any> = new BehaviorSubject<any>([]);
@@ -115,6 +124,8 @@ export class AppleMusic {
       ),
     }));
     this.searchResults.next(songs);
+    this.selectedView.next('search-results');
+
   }
 
   getAlbums() {}
