@@ -1,0 +1,7 @@
+
+Title: {{currentItem?.title}} {{player?.currentPlaybackTime}} {{player?.currentPlaybackDuration}} {{player?.currentPlaybackProgress}}
+{{player?.playbackState}}
+
+<button (click)="player.pause()">Pause</button>
+<button (click)="player.play()">Play</button>
+<button (click)="player.skipToNextItem()">Skip</button>

@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppleMusic } from './services/apple.music.service';
 import { TrackComponent } from './components/track/track.component';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrackComponent
+    TrackComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

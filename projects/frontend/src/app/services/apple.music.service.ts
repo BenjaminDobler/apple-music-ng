@@ -58,6 +58,10 @@ export class AppleMusic {
 
     this.loadPlaylists();
 
+    this.musicKit.player.addEventListener('mediaItemDidChange', (event)=>{
+        console.log('media did change', event);
+    });
+
     const p: any = await this.musicKit.api.recentPlayed();
     console.log(p);
 

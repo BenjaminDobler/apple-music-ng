@@ -82,7 +82,7 @@ declare namespace MusicKit {
      * @param name The name of the event.
      * @param callback The callback function to invoke when the event occurs.
      */
-    addEventListener(name: string, callback: () => any): void;
+    addEventListener(name: string, callback: (event: any) => any): void;
     /**
      * Begins playing the media item at the specified index in the queue immediately.
      *
