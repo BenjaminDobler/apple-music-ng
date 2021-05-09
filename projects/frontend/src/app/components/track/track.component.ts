@@ -11,7 +11,7 @@ export class TrackComponent implements OnInit {
   public track: any;
 
   @Input()
-  public type: 'playlist' | 'song' = 'song';
+  public type: 'playlist' | 'song' | 'library-albums' = 'song';
 
   @Input()
   public showArtwork = true;
@@ -26,6 +26,8 @@ export class TrackComponent implements OnInit {
       this.music.queue(this.track);
     } else if (this.type === 'playlist') {
       this.music.loadPlaylist(this.track);
+    } else if( this.type === 'library-albums') {
+      this.music.loadLibraryAlbum(this.track.id);
     }
   }
 

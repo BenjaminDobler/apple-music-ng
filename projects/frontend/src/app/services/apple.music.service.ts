@@ -3,7 +3,12 @@ import { api } from '../../environments/secret';
 
 export class AppleMusic {
   playlists: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+  libraryAlbums: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
   selectedPlaylist: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
+  selectedLibraryAlbum: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
 
 
   public musicKit: MusicKit.MusicKitInstance;
@@ -61,7 +66,18 @@ export class AppleMusic {
     const p3: any = await this.musicKit.api.library.artists([]);
     console.log("artists", p3);
 
+  }
 
+  async loadLibraryAlbum(id: string) {
+    console.log('id ', id);
+    const album = await this.musicKit.api.library.album(id);
+    this.selectedLibraryAlbum.next(album);
+  }
+
+  async loadLibraryAlbums() {
+    const albums: any = await this.musicKit.api.library.albums([]);
+    console.log('albums ', albums);
+    this.libraryAlbums.next(albums);
   }
 
   async loadPlaylists() {

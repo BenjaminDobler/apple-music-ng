@@ -9,7 +9,7 @@
     <div class="headline">Mediathek</div>
     <div>Recently added</div>
     <div>Artists</div>
-    <div>Albums</div>
+    <div (click)="music.loadLibraryAlbums()">Albums</div>
 
 
     <div class="headline">Playlist</div>
@@ -29,11 +29,23 @@
 
     </div>
     <div class="main">
+
+      <!-- Search Results -->
       <div class="search-results">
         <div *ngFor="let song of (music.searchResults | async)?.data">
           <music-track [track]="song"></music-track>
         </div>
       </div>
+
+
+      <!-- Library albums -->
+      <div class="search-results">
+        <div *ngFor="let song of (music.libraryAlbums | async)">
+          <music-track [track]="song" [type]="'library-albums'"></music-track>
+        </div>
+      </div>
+
+
       <!-- Playlist Detail-->
       <div>
         <div
@@ -54,6 +66,31 @@
         </div>
         <ng-template #loading>No playlist selected</ng-template>
       </div>
+
+
+      <!-- Library Album-->
+      <div>
+        <div
+          *ngIf="music.selectedLibraryAlbum | async as selectedLibraryAlbum; else loading"
+        >
+
+          <div>
+            <img [src]="music.formatArtwork(selectedLibraryAlbum.attributes.artwork)" >
+            <div>{{selectedLibraryAlbum.attributes.name}}</div>
+            <!-- <div>{{selectedLibraryAlbum.attributes.description.standard}}</div> -->
+
+          </div>
+
+          <music-track
+            *ngFor="let track of selectedLibraryAlbum.relationships.tracks.data"
+            [track]="track"
+          ></music-track>
+        </div>
+        <ng-template #loading>No playlist selected</ng-template>
+      </div>
+
+
+
     </div>
 
   </div>
