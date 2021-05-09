@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:nth-child(odd) {
+    background: #232323;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}
+
+.navigation {
+  height: 32px;
+  font-size: 15px;
+  line-height: 1.46667;
+  font-weight: 400;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+}

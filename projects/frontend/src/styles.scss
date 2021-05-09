@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "SF Pro",
+    "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 106.25%;
+
+  color: #DFDFDF;
+}
+
+
+body {
+    margin: 0;
+    background: #1F1F1F;
+}
+
+
+
+.typography-large-title-semibold {
+    font-size: 26px;
+    line-height: 1.23077;
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.web-navigation__nav-label {
+    font-size: 15px;
+    line-height: 1.46667;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.typography-body {
+    font-size: 13px;
+    line-height: 1.23077;
+    
+}

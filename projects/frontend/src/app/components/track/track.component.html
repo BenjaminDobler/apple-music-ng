@@ -1,0 +1,22 @@
+<!-- <img
+  *ngIf="showArtwork && track.attributes.artwork"
+  [attr.src]="music.formatArtwork(track.attributes.artwork, 30, 30)"
+/> -->
+<div
+  class="noselect"
+  draggable="true"
+  [class.row]="type !== 'playlist'"
+  [class.navigation]="type === 'playlist'"
+  (dragstart)="dragStart($event)"
+  (dragend)="dragEnd($event)"
+  (dragover)="dragOver($event)"
+  (drop)="drop($event)"
+>
+  <div class="thumb" *ngIf="showArtwork && track.attributes.artwork" [style.background-image]="'url('+music.formatArtwork(track.attributes.artwork, 30, 30)+')'"></div>
+  <div style="flex-grow: 1;">{{ track.attributes.name }}</div>
+  <ng-container *ngIf="type !== 'playlist'">
+      <div>{{ track.attributes.albumName }}</div>
+      <div>{{ track.attributes.artistName }}</div>
+      <div>{{music.formatMediaTime(track.attributes.durationInMillis)}}</div>
+  </ng-container>
+</div>

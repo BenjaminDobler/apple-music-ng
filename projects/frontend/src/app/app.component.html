@@ -1,0 +1,60 @@
+<div class="header"></div>
+
+<div class="container">
+  <div class="sidebar">
+    <!-- Search -->
+    <input #searchTx (change)="music.search(searchTx.value)" />
+
+
+    <div class="headline">Mediathek</div>
+    <div>Recently added</div>
+    <div>Artists</div>
+    <div>Albums</div>
+
+
+    <div class="headline">Playlist</div>
+    <!-- Playlist list-->
+    <div class="playlist">
+      <music-track
+        [type]="'playlist'"
+        [showArtwork]="false"
+        *ngFor="let playlist of music.playlists | async"
+        [track]="playlist"
+      ></music-track>
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="player">
+
+    </div>
+    <div class="main">
+      <div class="search-results">
+        <div *ngFor="let song of (music.searchResults | async)?.data">
+          <music-track [track]="song"></music-track>
+        </div>
+      </div>
+      <!-- Playlist Detail-->
+      <div>
+        <div
+          *ngIf="music.selectedPlaylist | async as selectedPlaylist; else loading"
+        >
+
+          <div>
+            <img [src]="music.formatArtwork(selectedPlaylist.attributes.artwork)" >
+            <div>{{selectedPlaylist.attributes.name}}</div>
+            <div>{{selectedPlaylist.attributes.description.standard}}</div>
+
+          </div>
+
+          <music-track
+            *ngFor="let track of selectedPlaylist.relationships.tracks.data"
+            [track]="track"
+          ></music-track>
+        </div>
+        <ng-template #loading>No playlist selected</ng-template>
+      </div>
+    </div>
+
+  </div>
+</div>
